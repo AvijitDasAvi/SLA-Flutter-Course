@@ -1,5 +1,4 @@
-import 'package:assignment7/pages/login_page.dart';
-import 'package:assignment7/pages/sign_up.dart';
+import 'package:assignment7/pages/onboarding_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Assignment 7th",
-      home: HomePage(),
+      home: OnboardingPage(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:assignment7/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -16,7 +17,6 @@ class _SignUpState extends State<SignUp> {
   final phoneController = TextEditingController();
   bool _isObscure = true;
   String? selectedCountry;
-  String? selectedProvider;
 
   @override
   void dispose() {
@@ -31,6 +31,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -39,32 +40,39 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  child: const Text(
-                    "DEV",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                Image.asset(
+                  "assets/images/ship.jpg",
+                  height: 200.0,
+                  width: 200.0,
+                ),
+                const SizedBox(height: 10.0),
+                const Text(
+                  "Sign Up Now",
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 6, 47, 119),
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 20.0),
+                const Text(
+                  "Please fill the details for create account",
+                  style: TextStyle(
+                    color: Colors.black45,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 30.0),
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(),
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: TextFormField(
                     controller: usernameController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Enter your username",
+                      hintText: "Name",
                       prefixIcon: Icon(Icons.person_2_outlined),
                     ),
                     validator: (value) {
@@ -81,13 +89,13 @@ class _SignUpState extends State<SignUp> {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(),
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: TextFormField(
                     controller: emailController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Enter your email",
+                      hintText: "Email",
                       prefixIcon: Icon(Icons.email_outlined),
                     ),
                     validator: (value) {
@@ -102,16 +110,15 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 const SizedBox(height: 20.0),
-                // Country Dropdown Field
                 DropdownButtonFormField<String>(
                   value: selectedCountry,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                     filled: true,
                     fillColor: Colors.white,
-                    prefixIcon: Icon(Icons.flag_outlined),
+                    prefixIcon: const Icon(Icons.flag_outlined),
                     hintText: 'Select your country',
                   ),
                   items: ['United States', 'Canada', 'India', 'United Kingdom']
@@ -129,17 +136,16 @@ class _SignUpState extends State<SignUp> {
                       value == null ? 'Please select your country' : null,
                 ),
                 const SizedBox(height: 20.0),
-                // Phone Number Field
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(),
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: TextFormField(
                     controller: phoneController,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Enter your phone number",
+                      hintText: "Phone number",
                       prefixIcon: Icon(Icons.phone),
                     ),
                     keyboardType: TextInputType.phone,
@@ -154,44 +160,17 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 const SizedBox(height: 20.0),
-                // Provider Dropdown Field
-                DropdownButtonFormField<String>(
-                  value: selectedProvider,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    filled: true,
-                    fillColor: Colors.white,
-                    prefixIcon: Icon(Icons.account_circle),
-                    hintText: 'Select provider',
-                  ),
-                  items: ['Provider A', 'Provider B', 'Provider C']
-                      .map((provider) => DropdownMenuItem(
-                            value: provider,
-                            child: Text(provider),
-                          ))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      selectedProvider = value;
-                    });
-                  },
-                  validator: (value) =>
-                      value == null ? 'Please select a provider' : null,
-                ),
-                const SizedBox(height: 20.0),
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(),
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: TextFormField(
                     controller: passwordController,
                     obscureText: _isObscure,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Enter your password",
+                      hintText: "Password",
                       prefixIcon: const Icon(Icons.lock_outline),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -199,8 +178,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         onPressed: () {
                           setState(() {
-                            _isObscure =
-                                !_isObscure; // Toggle password visibility
+                            _isObscure = !_isObscure;
                           });
                         },
                       ),
@@ -219,14 +197,14 @@ class _SignUpState extends State<SignUp> {
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(),
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: TextFormField(
                     controller: confirmPasswordController,
                     obscureText: _isObscure,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: "Confirm your password",
+                      hintText: "Confirm Password",
                       prefixIcon: const Icon(Icons.lock_outline),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -234,8 +212,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         onPressed: () {
                           setState(() {
-                            _isObscure =
-                                !_isObscure; // Toggle password visibility
+                            _isObscure = !_isObscure;
                           });
                         },
                       ),
@@ -251,35 +228,76 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 const SizedBox(height: 20.0),
-                ElevatedButton(
-                  onPressed: () {
+                InkWell(
+                  borderRadius: BorderRadius.circular(10.0),
+                  onTap: () {
                     if (_formKey.currentState!.validate()) {
                       String username = usernameController.text;
                       String email = emailController.text;
                       String password = passwordController.text;
+                      String confirmPassword = confirmPasswordController.text;
                       String phone = phoneController.text;
                       String country = selectedCountry ?? 'No country selected';
-                      String provider =
-                          selectedProvider ?? 'No provider selected';
+
+                      print("Username: $username");
+                      print("Email: $email");
+                      print("Password: $password");
+                      print("Confirm Password: $confirmPassword");
+                      print("Phone: $phone");
+                      print("Country: $country");
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Center(
+                  child: Container(
+                    padding: const EdgeInsets.all(10.0),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 6, 47, 119),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: const Center(
                       child: Text(
                         "Sign Up",
                         style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
+                          fontSize: 18.0,
                         ),
                       ),
                     ),
                   ),
                 ),
+                const SizedBox(
+                  height: 15.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Don't have an account?",
+                      style: TextStyle(
+                        color: Colors.black45,
+                        fontWeight: FontWeight.w800,
+                        fontSize: 15.0,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()));
+                      },
+                      child: const Text(
+                        " Log In",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 6, 47, 119),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    )
+                  ],
+                )
               ],
             ),
           ),
